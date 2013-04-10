@@ -3,41 +3,30 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Hornetq-jms-python by perusworld</title>
+    <title>hornetq-jms-python by perusworld</title>
+
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-
-      <header>
-        <h1>Hornetq-jms-python</h1>
-        <p>Sample HornetQ JMS Python Integration</p>
-      </header>
-
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/perusworld/hornetq-jms-python" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/perusworld/hornetq-jms-python/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/perusworld/hornetq-jms-python/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
-
     <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
+      <header>
+        <h1>hornetq-jms-python</h1>
+        <p>Sample HornetQ JMS Python Integration</p>
+
+        <p class="view"><a href="https://github.com/perusworld/hornetq-jms-python">View the Project on GitHub <small>perusworld/hornetq-jms-python</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/perusworld/hornetq-jms-python/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/perusworld/hornetq-jms-python/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/perusworld/hornetq-jms-python">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
       <section>
         <h1>hornetq-jms-python</h1>
 
@@ -71,7 +60,8 @@
 
 <ul>
 <li>cd hornetq-2.3.0.CR2/bin/</li>
-<li>cmd /c run.bat</li>
+<li>
+<strong>cmd /c run.bat</strong> or <strong>./run.sh</strong> depending on your OS</li>
 <li>Check the logs to see if your queue and stomp listeners are started</li>
 </ul><pre><code>    15:29:22,537 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.DLQ
     15:29:22,615 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.prodcons
@@ -88,26 +78,26 @@
 <li>Uses maven (spring-jms and hornetq-jms-client), so just <strong>mvn clean install</strong>
 </li>
 <li>
-<a href="src/test/java/com/yosanai/java/jms/ProducerTest.java">ProducerTest.java</a> - Runs just the producer</li>
+<a href="https://github.com/perusworld/hornetq-jms-python/blob/master/src/test/java/com/yosanai/java/jms/ProducerTest.java">ProducerTest.java</a> - Runs just the producer</li>
 <li>
-<a href="/src/test/java/com/yosanai/java/jms/ProducerConsumerTest.java">ProducerConsumerTest.java</a> - Runs both the producer and consumer</li>
+<a href="https://github.com/perusworld/hornetq-jms-python/blob/master/src/test/java/com/yosanai/java/jms/ProducerConsumerTest.java">ProducerConsumerTest.java</a> - Runs both the producer and consumer</li>
 </ul><h3>Running Python Implementations</h3>
 
 <ul>
 <li>Uses stompest, so just <strong>pip install stompest</strong>
 </li>
 <li>
-<a href="/src/test/python/producer.py">producer.py</a> - Runs the producer</li>
+<a href="https://github.com/perusworld/hornetq-jms-python/blob/master/src/test/python/producer.py">producer.py</a> - Runs the producer</li>
 <li>
-<a href="/src/test/python/consumer.py">consumer.py</a> - Runs the consumer</li>
+<a href="https://github.com/perusworld/hornetq-jms-python/blob/master/src/test/python/consumer.py">consumer.py</a> - Runs the consumer</li>
 </ul><p>You can mix and match running the producer/consumer from either of the impls to check the interaction.</p>
       </section>
       <footer>
-        <p>Project maintained by <a href="https://github.com/perusworld">perusworld</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+        <p>This project is maintained by <a href="https://github.com/perusworld">perusworld</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script src="javascripts/scale.fix.js"></script>
     
   </body>
 </html>
