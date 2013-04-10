@@ -1,4 +1,50 @@
-hornetq-jms-python
-==================
+= hornetq-jms-python =
 
-Sample HornetQ JMS Python Integration
+== Sample HornetQ JMS Python Integration ==
+This sample project implements Queue producer/consumer in java/python. The java implementation uses JMS while the python implementation uses STOMP 
+
+=== Setup HornetQ ===
+
+* wget http://downloads.jboss.org/hornetq/hornetq-2.3.0.CR2-bin.tar.gz
+* tar -xvzf hornetq-2.3.0.CR2-bin.tar.gz
+* vi hornetq-2.3.0.CR2/config/stand-alone/non-clustered/hornetq-configuration.xml
+<pre>
+     <acceptor name="netty">
+         <factory-class>org.hornetq.core.remoting.impl.netty.NettyAcceptorFactory</factory-class>
+         <param key="host"  value="${hornetq.remoting.netty.host:localhost}"/>
+         <param key="port"  value="${hornetq.remoting.netty.stomp.port:61613}"/>
+         <param key="protocol"  value="stomp"/>
+      </acceptor>
+</pre>
+* vi hornetq-2.3.0.CR2/config/stand-alone/non-clustered/hornetq-configuration.xml
+<pre>
+   <queue name="prodcons">
+      <entry name="/queue/prodcons"/>
+   </queue>
+</pre>
+
+=== Start HornetQ ===
+* cd hornetq-2.3.0.CR2/bin/
+* cmd /c run.bat
+* Check the logs to see if your queue and stomp listeners are started
+<pre>
+    15:29:22,537 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.DLQ
+    15:29:22,615 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.prodcons
+    15:29:22,631 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.ExpiryQueue
+    15:29:22,724 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 3.6.2.Final-c0d783c localhost:5455 for CORE protocol
+    15:29:22,724 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 3.6.2.Final-c0d783c localhost:5445 for CORE protocol
+    15:29:22,724 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 3.6.2.Final-c0d783c localhost:61613 for STOMP protocol
+    15:29:22,740 INFO  [org.hornetq.core.server] HQ221007: Server is now live
+</pre>
+
+=== Running Java Implementations ===
+* Uses maven (spring-jms and hornetq-jms-client), so just '''mvn clean install'''
+* [/src/test/java/com/yosanai/java/jms/ProducerTest.java ProducerTest.java] - Runs just the producer
+* [/src/test/java/com/yosanai/java/jms/ProducerConsumerTest.java ProducerConsumerTest.java] - Runs both the producer and consumer
+ 
+=== Running Python Implementations ===
+* Uses stompest, so just '''pip install stompest'''
+* [/src/test/python/producer.py producer.py] - Runs the producer
+* [/src/test/python/consumer.py consumer.py] - Runs the consumer
+
+You can mix and match running the producer/consumer from either of the impls to check the interaction.
