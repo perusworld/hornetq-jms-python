@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="messageConsumer" class="com.yosanai.java.jms.MessageConsumer"></bean>
+
+	<bean
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer"
+		destroy-method="shutdown">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+		<property name="destination" ref="prodconsQueue"></property>
+		<property name="messageListener" ref="messageConsumer"></property>
+		<property name="concurrentConsumers" value="10" />
+	</bean>
+
+</beans>

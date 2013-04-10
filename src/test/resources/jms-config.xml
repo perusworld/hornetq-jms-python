@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="mqProperties" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<entry key="host" value="localhost" />
+				<entry key="port" value="5445" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="transportConfiguration" class="org.hornetq.api.core.TransportConfiguration">
+		<constructor-arg
+			value="org.hornetq.core.remoting.impl.netty.NettyConnectorFactory"></constructor-arg>
+		<constructor-arg ref="mqProperties"></constructor-arg>
+	</bean>
+
+	<bean id="connectionFactory" class="org.hornetq.jms.client.HornetQJMSConnectionFactory">
+		<constructor-arg value="false"></constructor-arg>
+		<constructor-arg ref="transportConfiguration"></constructor-arg>
+	</bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory"></property>
+	</bean>
+
+	<bean id="prodconsQueue" class="org.hornetq.jms.client.HornetQQueue">
+		<constructor-arg value="prodcons"></constructor-arg>
+	</bean>
+
+
+</beans>
