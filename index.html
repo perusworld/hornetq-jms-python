@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Hornetq-jms-python by perusworld</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Hornetq-jms-python</h1>
+        <p>Sample HornetQ JMS Python Integration</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/perusworld/hornetq-jms-python" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/perusworld/hornetq-jms-python/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/perusworld/hornetq-jms-python/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>hornetq-jms-python</h1>
+
+<h2>Sample HornetQ JMS Python Integration</h2>
+
+<p>This sample project implements Queue producer/consumer in java/python. The java implementation uses JMS while the python implementation uses STOMP </p>
+
+<h3>Setup HornetQ</h3>
+
+<ul>
+<li>wget <a href="http://downloads.jboss.org/hornetq/hornetq-2.3.0.CR2-bin.tar.gz">http://downloads.jboss.org/hornetq/hornetq-2.3.0.CR2-bin.tar.gz</a>
+</li>
+<li>tar -xvzf hornetq-2.3.0.CR2-bin.tar.gz</li>
+<li>vi hornetq-2.3.0.CR2/config/stand-alone/non-clustered/hornetq-configuration.xml</li>
+</ul><pre><code>     &lt;acceptor name="netty"&gt;
+         &lt;factory-class&gt;org.hornetq.core.remoting.impl.netty.NettyAcceptorFactory&lt;/factory-class&gt;
+         &lt;param key="host"  value="${hornetq.remoting.netty.host:localhost}"/&gt;
+         &lt;param key="port"  value="${hornetq.remoting.netty.stomp.port:61613}"/&gt;
+         &lt;param key="protocol"  value="stomp"/&gt;
+      &lt;/acceptor&gt;
+</code></pre>
+
+<ul>
+<li>vi hornetq-2.3.0.CR2/config/stand-alone/non-clustered/hornetq-configuration.xml</li>
+</ul><pre><code>   &lt;queue name="prodcons"&gt;
+      &lt;entry name="/queue/prodcons"/&gt;
+   &lt;/queue&gt;
+</code></pre>
+
+<h3>Start HornetQ</h3>
+
+<ul>
+<li>cd hornetq-2.3.0.CR2/bin/</li>
+<li>cmd /c run.bat</li>
+<li>Check the logs to see if your queue and stomp listeners are started</li>
+</ul><pre><code>    15:29:22,537 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.DLQ
+    15:29:22,615 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.prodcons
+    15:29:22,631 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.ExpiryQueue
+    15:29:22,724 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 3.6.2.Final-c0d783c localhost:5455 for CORE protocol
+    15:29:22,724 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 3.6.2.Final-c0d783c localhost:5445 for CORE protocol
+    15:29:22,724 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 3.6.2.Final-c0d783c localhost:61613 for STOMP protocol
+    15:29:22,740 INFO  [org.hornetq.core.server] HQ221007: Server is now live
+</code></pre>
+
+<h3>Running Java Implementations</h3>
+
+<ul>
+<li>Uses maven (spring-jms and hornetq-jms-client), so just <strong>mvn clean install</strong>
+</li>
+<li>
+<a href="src/test/java/com/yosanai/java/jms/ProducerTest.java">ProducerTest.java</a> - Runs just the producer</li>
+<li>
+<a href="/src/test/java/com/yosanai/java/jms/ProducerConsumerTest.java">ProducerConsumerTest.java</a> - Runs both the producer and consumer</li>
+</ul><h3>Running Python Implementations</h3>
+
+<ul>
+<li>Uses stompest, so just <strong>pip install stompest</strong>
+</li>
+<li>
+<a href="/src/test/python/producer.py">producer.py</a> - Runs the producer</li>
+<li>
+<a href="/src/test/python/consumer.py">consumer.py</a> - Runs the consumer</li>
+</ul><p>You can mix and match running the producer/consumer from either of the impls to check the interaction.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/perusworld">perusworld</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
