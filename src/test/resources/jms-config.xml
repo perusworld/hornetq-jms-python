@@ -9,7 +9,7 @@
 		<property name="sourceMap">
 			<map>
 				<entry key="host" value="localhost" />
-				<entry key="port" value="5445" />
+				<entry key="port" value="5455" />
 			</map>
 		</property>
 	</bean>
