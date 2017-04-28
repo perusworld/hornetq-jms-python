@@ -5,9 +5,9 @@ This sample project implements Queue producer/consumer in java/python. The java 
 
 === Setup HornetQ ===
 
-* wget http://downloads.jboss.org/hornetq/hornetq-2.3.0.CR2-bin.tar.gz
-* tar -xvzf hornetq-2.3.0.CR2-bin.tar.gz
-* vi hornetq-2.3.0.CR2/config/stand-alone/non-clustered/hornetq-configuration.xml
+* wget http://downloads.jboss.org/hornetq/hornetq-2.4.0.Final-bin.tar.gz
+* tar -xvzf hornetq-2.4.0.Final-bin.tar.gz
+* vi hornetq-2.4.0.Final/config/stand-alone/non-clustered/hornetq-configuration.xml
 <pre>
      <acceptor name="netty">
          <factory-class>org.hornetq.core.remoting.impl.netty.NettyAcceptorFactory</factory-class>
@@ -16,7 +16,7 @@ This sample project implements Queue producer/consumer in java/python. The java 
          <param key="protocol"  value="stomp"/>
       </acceptor>
 </pre>
-* vi hornetq-2.3.0.CR2/config/stand-alone/non-clustered/hornetq-configuration.xml
+* vi hornetq-2.4.0.Final/config/stand-alone/non-clustered/hornetq-jms.xml
 <pre>
    <queue name="prodcons">
       <entry name="/queue/prodcons"/>
@@ -24,17 +24,22 @@ This sample project implements Queue producer/consumer in java/python. The java 
 </pre>
 
 === Start HornetQ ===
-* cd hornetq-2.3.0.CR2/bin/
+* cd hornetq-2.4.0.Final/bin/
 * '''cmd /c run.bat''' or '''./run.sh''' depending on your OS
 * Check the logs to see if your queue and stomp listeners are started
 <pre>
-    15:29:22,537 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.DLQ
-    15:29:22,615 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.prodcons
-    15:29:22,631 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.ExpiryQueue
-    15:29:22,724 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 3.6.2.Final-c0d783c localhost:5455 for CORE protocol
-    15:29:22,724 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 3.6.2.Final-c0d783c localhost:5445 for CORE protocol
-    15:29:22,724 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 3.6.2.Final-c0d783c localhost:61613 for STOMP protocol
-    15:29:22,740 INFO  [org.hornetq.core.server] HQ221007: Server is now live
+    09:47:00,297 INFO  [org.hornetq.core.server] HQ221043: Adding protocol support CORE
+    09:47:00,298 INFO  [org.hornetq.core.server] HQ221043: Adding protocol support AMQP
+    09:47:00,300 INFO  [org.hornetq.core.server] HQ221043: Adding protocol support STOMP
+    09:47:00,382 INFO  [org.hornetq.core.server] HQ221034: Waiting to obtain live lock
+    09:47:00,383 INFO  [org.hornetq.core.server] HQ221035: Live Server Obtained live lock
+    09:47:00,723 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.prodcons
+    09:47:00,730 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.DLQ
+    09:47:00,731 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.ExpiryQueue
+    09:47:00,850 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 4.0.13.Final localhost:5455
+    09:47:00,862 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 4.0.13.Final localhost:61613
+    09:47:00,863 INFO  [org.hornetq.core.server] HQ221007: Server is now live
+    09:47:00,863 INFO  [org.hornetq.core.server] HQ221001: HornetQ Server version 2.5.0.SNAPSHOT (Wild Hornet, 124) [f3362108-2c31-11e7-944c-718de06fc4c8]
 </pre>
 
 === Running Java Implementations ===
